@@ -5,7 +5,7 @@
 def pascal_triangle(levels):
     """Implementation of pascal's triangle algorithm"""
     if levels <= 0:
-        return [[]]
+        return []
 
     pascal_list = [[1]]
 
