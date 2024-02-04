@@ -8,6 +8,7 @@ from typing import Dict
 
 
 def print_stats(status_codes, total_size):
+    """Print All statistics"""
     print(f'File size: {total_size}')
     for key in sorted(status_codes.keys()):
         if status_codes[key] == 0:
@@ -16,6 +17,7 @@ def print_stats(status_codes, total_size):
 
 
 def main():
+    """Entry point of implementation"""
     pattern: str = r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{6})\] "GET \/projects\/260 HTTP\/1.1" (\d{3}) (\d+)$'
     line_count: int = 0
 
