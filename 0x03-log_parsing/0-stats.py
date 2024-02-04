@@ -3,8 +3,6 @@
 
 import re
 import sys
-from re import Match
-from typing import Dict
 
 
 def print_stats(status_codes, total_size):
@@ -18,12 +16,12 @@ def print_stats(status_codes, total_size):
 
 def main():
     """Entry point of implementation"""
-    pattern: str = (r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - '
-                    r'\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{6})\] "GET '
-                    r'\/projects\/260 HTTP\/1.1" (\d{3}) (\d+)$')
-    line_count: int = 0
+    pattern = (r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - '
+               r'\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{6})\] "GET '
+               r'\/projects\/260 HTTP\/1.1" (\d{3}) (\d+)$')
+    line_count = 0
 
-    status_codes: Dict[int, int] = {
+    status_codes = {
         200: 0,
         301: 0,
         400: 0,
@@ -31,12 +29,12 @@ def main():
         405: 0,
         500: 0
     }
-    total_size: int = 0
+    total_size = 0
 
     try:
         for line in sys.stdin:
             line_count += 1
-            line_match: Match[str] = re.match(pattern, line)
+            line_match = re.match(pattern, line)
             if not line_match:
                 continue
 
