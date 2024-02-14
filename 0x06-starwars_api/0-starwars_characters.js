@@ -1,4 +1,5 @@
 #!/usr/bin/node
+
 const request = require('request');
 const args = process.argv;
 
@@ -11,11 +12,13 @@ request.get(url, async (error, response, body) => {
     return;
   }
 
+  if (response.statusCode === 200) {
   const charactersUrls = JSON.parse(body).characters;
 
   for (const characterUrl of charactersUrls) {
     const characterBody = await getCharacterBody(characterUrl);
     console.log(JSON.parse(characterBody).name);
+  }
   }
 });
 
