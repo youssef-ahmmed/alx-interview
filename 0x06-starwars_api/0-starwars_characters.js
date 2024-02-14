@@ -5,7 +5,7 @@ const args = process.argv;
 const movieId = args[2];
 const url = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
 
-request(url, async (error, response, body) => {
+request.get(url, async (error, response, body) => {
   if (error) {
     console.error('Error:', error);
     return;
@@ -21,7 +21,7 @@ request(url, async (error, response, body) => {
 
 async function getCharacterBody (characterUrl) {
   return new Promise((resolve, reject) => {
-    request(characterUrl, (error, response, body) => {
+    request.get(characterUrl, (error, response, body) => {
       if (error) {
         reject(error);
       }
