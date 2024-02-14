@@ -5,13 +5,13 @@ const args = process.argv;
 const movieId = args[2];
 const url = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
 
-request({ url, json: true }, async (error, response, body) => {
+request(url, async (error, response, body) => {
   if (error) {
     console.error('Error:', error);
     return;
   }
 
-  const charactersUrls = body.characters;
+  const charactersUrls = JSON.parse(body).characters;
 
   for (const characterUrl of charactersUrls) {
     const characterBody = await getCharacterBody(characterUrl);
