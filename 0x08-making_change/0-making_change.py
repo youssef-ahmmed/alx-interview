@@ -12,24 +12,39 @@ def get_min_ignore_none(a, b):
     return min(a, b)
 
 
+# def makeChange(coins, total):
+#     """Making change using bottom-up approach"""
+#     cache = {0: 0}
+#
+#     for i in range(1, total + 1):
+#         cache[i] = float('inf')
+#         for coin in coins:
+#             subproblem = i - coin
+#
+#             if subproblem < 0:
+#                 continue
+#
+#             cache[i] = get_min_ignore_none(
+#                 cache.get(i),
+#                 cache.get(subproblem) + 1
+#             )
+#
+#     if cache[total] == float('inf'):
+#         return -1
+#
+#     return cache[total]
+
+
 def makeChange(coins, total):
     """Making change using bottom-up approach"""
     cache = {0: 0}
 
     for i in range(1, total + 1):
         cache[i] = float('inf')
-        for coin in coins:
-            subproblem = i - coin
 
-            if subproblem < 0:
-                continue
+    for coin in coins:
+        for i in range(coin, total + 1):
+            cache[i] = min(cache[i], cache[i - coin] + 1)
 
-            cache[i] = get_min_ignore_none(
-                cache.get(i),
-                cache.get(subproblem) + 1
-            )
+    return cache[total] if cache[total] != float('inf') else -1
 
-    if cache[total] == float('inf'):
-        return -1
-
-    return cache[total]
